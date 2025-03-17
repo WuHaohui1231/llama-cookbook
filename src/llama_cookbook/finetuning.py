@@ -143,6 +143,7 @@ def main(**kwargs):
         model = MllamaForConditionalGeneration.from_pretrained(
             train_config.model_name,
             quantization_config=bnb_config,
+            ignore_mismatched_sizes=True,
             attn_implementation="sdpa" if train_config.use_fast_kernels else None,
             device_map=(
                 "auto"

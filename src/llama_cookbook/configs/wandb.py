@@ -6,10 +6,10 @@ from dataclasses import dataclass, field
 
 @dataclass
 class wandb_config:
-    project: str = 'llama_cookbook' # wandb project name
+    project: str = 'finetune-llama3' # wandb project name
     entity: Optional[str] = None # wandb entity name
     job_type: Optional[str] = None
     tags: Optional[List[str]] = None
     group: Optional[str] = None
-    notes: Optional[str] = None
+    notes: Optional[str] = "light-full-text-pretrain-finetune"
     mode: Optional[str] = None
