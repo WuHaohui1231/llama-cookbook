@@ -115,11 +115,12 @@ def train(model, train_dataloader,eval_dataloader, tokenizer, optimizer, lr_sche
     # return
     eval_ppl, eval_epoch_loss, temp_val_loss, temp_step_perplexity = evaluation(model, train_config, eval_dataloader, local_rank, tokenizer, wandb_run)
     # if train_config.save_metrics:
-    evaluation_filename = f"pre_eval_results/metrics_data_{local_rank}-{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
+    # preeval_metric_path = f"pre_eval_results/metrics_data_{local_rank}-{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}-{train_config[:-15]}.json"
+    preeval_metric_path = f"{train_config.output_dir}/preeval_metrics_{local_rank}-{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
     # val_loss.append(float(eval_epoch_loss))
     # val_prep.append(float(eval_ppl))
     print("TYPES: ", type(temp_val_loss), type(eval_epoch_loss), type(temp_step_perplexity), type(eval_ppl))
-    save_to_json(evaluation_filename, [], [], [], [], list(map(float, temp_val_loss)), float(eval_epoch_loss), list(map(float, temp_step_perplexity)), float(eval_ppl))
+    save_to_json(preeval_metric_path, [], [], [], [], list(map(float, temp_val_loss)), float(eval_epoch_loss), list(map(float, temp_step_perplexity)), float(eval_ppl))
 
     epoch_times = []
     checkpoint_times = []
