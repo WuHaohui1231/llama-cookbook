@@ -6,10 +6,10 @@ from dataclasses import dataclass, field
 
 @dataclass
 class wandb_config:
-    project: str = 'finetune-llama3' # wandb project name
+    project: str = 'finetune-llama3-tatdqa' # wandb project name
     entity: Optional[str] = None # wandb entity name
     job_type: Optional[str] = None
     tags: Optional[List[str]] = None
     group: Optional[str] = None
-    notes: Optional[str] = "light-full-text-pretrain-finetune"
+    notes: Optional[str] = "FT on TATDQA dataset with pretrained fin_lora_pt_31l-30"
     mode: Optional[str] = None

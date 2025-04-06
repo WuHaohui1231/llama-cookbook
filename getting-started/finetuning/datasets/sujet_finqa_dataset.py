@@ -21,6 +21,7 @@ def replace_target(target,seq):
     return seq
 def tokenize_dialogs(dialogs, images, processor):
     text_prompt = processor.apply_chat_template(dialogs)
+    # prompt = f"<|begin_of_text|><|image|>{}"
     batch = processor(images=images, text=text_prompt,padding = True, return_tensors="pt")
     label_list = []
     for i in range(len(batch["input_ids"])):
@@ -87,6 +88,6 @@ class SujetFQADataCollator:
                 ]
             dialogs.append(dialog)
             images.append([image])
-        return tokenize_dialogs(dialogs,images, self.processor)
+        return tokenize_dialogs(dialogs, images, self.processor)
 def get_data_collator(processor):
     return SujetFQADataCollator(processor)
